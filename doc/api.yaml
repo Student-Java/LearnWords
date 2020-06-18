@@ -194,7 +194,7 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: "#/components/schemas/Word"
+                $ref: "#/components/schemas/Word"
   /users:
     post:
       tags:
@@ -223,7 +223,7 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/User"
         422:
           description: Incorrect e-mail or password
   /users/{id}:
@@ -245,7 +245,7 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: "#/components/schemas/User"
+                $ref: "#/components/schemas/User"
         401:
           $ref: '#/components/responses/UnauthorizedError'
         404:
@@ -314,6 +314,20 @@ paths:
                   $ref: "#/components/schemas/UserWord"
         401:
           $ref: '#/components/responses/UnauthorizedError'
+  /users/{id}/words/{wordId}:
+    parameters:
+      - name: id
+        description: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: wordId
+        description: wordId
+        in: path
+        required: true
+        schema:
+          type: string
     post:
       tags:
         - Users/Words
@@ -339,25 +353,11 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: "#/components/schemas/UserWord"
+                $ref: "#/components/schemas/UserWord"
         400:
           description: Bad request
         401:
           $ref: '#/components/responses/UnauthorizedError'
-  /users/{id}/words/{wordId}:
-    parameters:
-      - name: id
-        description: userId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: wordId
-        description: wordId
-        in: path
-        required: true
-        schema:
-          type: string
     get:
       tags:
         - Users/Words
@@ -399,7 +399,7 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: "#/components/schemas/UserWord"
+                $ref: "#/components/schemas/UserWord"
         400:
           description: Bad request
         401:
@@ -433,7 +433,7 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: "#/components/schemas/Statistic"
+                $ref: "#/components/schemas/Statistic"
         401:
           $ref: '#/components/responses/UnauthorizedError'
         404:
@@ -464,7 +464,7 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: "#/components/schemas/Statistic"
+                $ref: "#/components/schemas/Statistic"
         400:
           description: Bad request
         401:
@@ -488,7 +488,7 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: "#/components/schemas/Setting"
+                $ref: "#/components/schemas/Setting"
         401:
           $ref: '#/components/responses/UnauthorizedError'
         404:
@@ -519,7 +519,7 @@ paths:
           content:
             application/json:
               schema:
-                  $ref: "#/components/schemas/Setting"
+                $ref: "#/components/schemas/Setting"
         400:
           description: Bad request
         401:
