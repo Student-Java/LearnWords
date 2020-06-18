@@ -7,6 +7,9 @@ const settingsService = require('../settings/setting.service');
 
 const authenticate = async user => {
   const userEntity = await usersRepo.getUserByEmail(user.email);
+  if (!user.password) {
+    throw new AUTHENTICATION_ERROR();
+  }
 
   const isValidated = await bcrypt.compare(user.password, userEntity.password);
   if (!isValidated) {
