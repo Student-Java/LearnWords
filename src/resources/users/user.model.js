@@ -20,8 +20,16 @@ const User = new Schema(
   { collection: 'users' }
 );
 
-User.pre('save', async function preSave(next) {
+User.pre(['save', 'findOneAndUpdate'], async function preSave(next) {
   this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+User.pre('findOneAndUpdate', async function preUpdate(next) {
+  this._update.$set.password = await bcrypt.hash(
+    this._update.$set.password,
+    10
+  );
   next();
 });
 
